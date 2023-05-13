@@ -29,7 +29,7 @@ int main(void) {
 
     while (hasWon == false && remainingTurns > 0) {
 
-	printf("Current state: ");
+	printf("\n\n");
 	
 // loop through word to guess and display __ or guessed letters    
 	for (int i = 0; wordToGuess[i] != '\0'; i++) {
@@ -39,7 +39,7 @@ int main(void) {
 		 printf("_ ");
 		 }
 	    }
-	    printf("\n");;
+	    printf("\n\n");;
 
 	    // get next turn's input
 // need to do something to make them only enter one letter
@@ -55,11 +55,11 @@ int main(void) {
     }
 
     if (hasWon) {
-    printf("You win!");
+    printf("You win!\n");
     }
 
     if (!hasWon && remainingTurns == 0) {
-    printf("You lose!");
+    printf("You lose!\n");
     }
 
     printf("    _____    \n    |   !   \n    |   O   \n    |  /|\\  \n    | / | \\  \n    |  / \\  \n    | /   \\\n____|____  \n");
@@ -69,8 +69,24 @@ int main(void) {
 }
 
 bool checkIfWon(char* wordToGuess, char* alreadyGuessed) {
-	printf("Checking...\n");
-	return false;
+	// for each letter of the reference word
+	for (int i = 0; wordToGuess[i] != '\0'; i++) {
+		// check if it's in the already guessed array
+		bool found = false;
+		for (int j = 0; j < sizeof(alreadyGuessed); j++) {
+			if (wordToGuess[i] == alreadyGuessed[j]) {
+			found = true;
+			break;
+			}
+			// either youve returned early because it's true
+			// if you've checked every letter and its still false, you havent won
+		}
+		  if (found == false) {
+	      		  return false;
+                        }
+	}
+	// still here? must have found everything!
+	return true;
 }
 
 bool haveGuessedLetter(char letter, char* alreadyGuessed) {
