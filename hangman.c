@@ -49,10 +49,9 @@ int main(void) {
    // to avoid the word being corvette every single time
     srand(time(NULL));
     int wordToGuessIndex = rand() % i;
-printf("word to guess index %i \n", wordToGuessIndex);
     char *wordToGuess = words[wordToGuessIndex];
 
-    printf("word to guess %s \n", wordToGuess);
+    printf("debug: word to guess %s \n", wordToGuess);
 
     int max_errors = 10;
     int errors_made = 0;
@@ -61,7 +60,6 @@ printf("word to guess index %i \n", wordToGuessIndex);
 int alphabet_length = 26;
     char alreadyGuessed[alphabet_length + 1];
  // correct here!
-    printf("alreadyGuessed just declared, size is %lu\n", sizeof(alreadyGuessed));
 
     // this seems very dumb
     for (int i = 0; i < alphabet_length; i++) {
@@ -69,7 +67,6 @@ int alphabet_length = 26;
     }
     alreadyGuessed[alphabet_length] = '\0';
  
- printf("initialised with ?s, size is %lu\n",sizeof(alreadyGuessed));
     // start playing! show them how long the word is
     print_current_state(wordToGuess, alreadyGuessed);
 
@@ -78,8 +75,9 @@ int alphabet_length = 26;
     while (hasWon == false && errors_made < max_errors) {
 
 	    // get next turn's input
-// need to do something to make them only enter one letter
-    	    char *guess = get_string("Next guess please: ");
+// TODO need to do something to make them only enter one letter
+    	// and reject a letter thats already been given
+	    char *guess = get_string("Next guess please: ");
 
 	printf("\n\n\n\n\n\n\n");
 	// add it to the array
@@ -94,6 +92,7 @@ int alphabet_length = 26;
 	}
 
 	print_current_state(wordToGuess, alreadyGuessed);
+// TODO also print letters that have been guessed so far
 	// check if they've won
 	hasWon = checkIfWon(wordToGuess, alreadyGuessed); 
         
@@ -117,7 +116,7 @@ bool checkIfWon(char* wordToGuess, char* alreadyGuessed) {
 	for (int i = 0; wordToGuess[i] != '\0'; i++) {
 		// check if it's in the already guessed array
 		bool found = false;
-		for (int j = 0; alreadyGuessed[i] != '\0'; j++) {
+		for (int j = 0; alreadyGuessed[j] != '\0'; j++) {
 			if (wordToGuess[i] == alreadyGuessed[j]) {
 			found = true;
 			break;
@@ -161,7 +160,6 @@ bool check_if_error(char* word_to_guess, char guess) {
 
 void print_current_state(char* word_to_guess, char* already_guessed) {
 // loop through word to guess and display __ or guessed letters    
-printf("checking.. already guessed %s\n", already_guessed);
 	for (int i = 0; word_to_guess[i] != '\0'; i++) {
   		if (haveGuessedLetter(word_to_guess[i], already_guessed)) {
 		    printf("%c ", word_to_guess[i]);
