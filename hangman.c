@@ -10,9 +10,6 @@ int main(void)
 {
 	printf("Welcome! Let's play hangman.\n");
 
-	// run fn that chooses word.. it returns word (and letter count? not really nec)
-	// fn that does a turn... inputs: word, remaining no of turns, guesses so far
-
 	FILE *file = fopen("wordlist.txt", "r");
 	// need to make array of arrays (strings) to load wordlist into?
 	char words[80000][40]; // how to make it dynamic?
@@ -57,13 +54,14 @@ int main(void)
 		// and reject a letter thats already been given
 		char *guess = get_string("Next guess please: ");
 
-		// this doesnt work because guess is 8. feel like this needs to go into its own little fn
-		printf("guess is %lu\n", sizeof(guess));
-		while (sizeof(guess) > 2)
+		printf("guess is %lu\n", strlen(guess));
+
+		while (strlen(guess) > 1)
 		{
 			guess = get_string("Please enter one letter only: ");
 		}
-
+		printf("\n");
+		printf("~ ~ ~ ~ ~");
 		printf("\n\n\n\n\n\n\n");
 		// add it to the array
 		add_guess_to_already_guessed(guess[0], alreadyGuessed);
