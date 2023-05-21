@@ -56181,35 +56181,11 @@ reel
 reeled
 reeling
 reels
-re-emphasise
 reemploy
 reemployment
-re-enact
-re-enactment
-re-enter
-re-entered
-re-entering
-re-enters
-re-entrance
-re-entrant
-re-entry
-re-establish
-re-established
-re-establishes
-re-establishing
 reestablishment
-re-evaluate
-re-evaluated
-re-evaluates
-re-evaluating
-re-evaluation
 reeve
 reeves
-re-examination
-re-examine
-re-examined
-re-examines
-re-examining
 ref
 reface
 refaced
@@ -64742,7 +64718,6 @@ straiten
 straitened
 straitening
 straitjacket
-strait-laced
 straits
 strake
 strand
@@ -65929,7 +65904,6 @@ surcharges
 surcharging
 surd
 sure
-sure-fire
 surefooted
 surefootedness
 surely
@@ -66994,7 +66968,6 @@ teals
 team
 teamed
 teaming
-team-mate
 teams
 teamster
 teamsters
@@ -68167,7 +68140,6 @@ tiny
 tip
 tipcart
 tipi
-tip-off
 tipped
 tipper
 tippers
@@ -68453,7 +68425,6 @@ toper
 topes
 topflight
 topgallant
-top-heavy
 topiary
 topic
 topical
@@ -70104,7 +70075,6 @@ unattended
 unattractive
 unattractively
 unattractiveness
-un-attributed
 unauthentic
 unauthenticated
 unauthorised
@@ -73328,7 +73298,6 @@ weaselled
 weaselling
 weasels
 weather
-weather-beaten
 weatherboard
 weatherboarding
 weathercock
@@ -73339,7 +73308,6 @@ weathering
 weatherman
 weatherproof
 weathers
-weather-strip
 weatherworn
 weave
 weaver
@@ -73437,7 +73405,6 @@ wellies
 welling
 wellness
 wells
-well-wisher
 welsh
 welt
 welter
@@ -73715,7 +73682,6 @@ whittling
 whittlings
 whiz
 whizz
-whiz-bang
 whizzed
 whizzes
 whizzing
