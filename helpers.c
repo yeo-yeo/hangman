@@ -1,23 +1,50 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
+#include <stdlib.h>
 
-bool checkIfWon(char *wordToGuess, char *alreadyGuessed)
+char *load_and_choose_word()
+{
+    int max_word_length = 40;
+    FILE *file = fopen("wordlist.txt", "r");
+    char words[80000][max_word_length];
+
+    int i = 0;
+    while (fgets(words[i], 40, file) != NULL)
+    {
+        words[i][strlen(words[i]) - 1] = '\0';
+        i++;
+    }
+    fclose(file);
+
+    // so that the word isn't 'corvette' every single time
+    srand(time(NULL));
+    int word_to_guess_index = rand() % i;
+
+    static char *word_to_guess;
+    word_to_guess = malloc(max_word_length);
+    strcpy(word_to_guess, words[word_to_guess_index]);
+
+    return word_to_guess;
+}
+
+bool check_if_won(char *word_to_guess, char *correct_guesses)
 {
     // for each letter of the reference word
-    for (int i = 0; wordToGuess[i] != '\0'; i++)
+    for (int i = 0; word_to_guess[i] != '\0'; i++)
     {
         // check if it's in the already guessed array
         bool found = false;
-        for (int j = 0; alreadyGuessed[j] != '\0'; j++)
+        for (int j = 0; correct_guesses[j] != '\0'; j++)
         {
-            if (wordToGuess[i] == alreadyGuessed[j])
+            if (word_to_guess[i] == correct_guesses[j])
             {
                 found = true;
                 break;
             }
-            // either youve returned early because it's true
-            // if you've checked every letter and its still false, you havent won
+            // either you've returned early because it's true
+            // if you've checked every letter and its still false, you haven't won
         }
         if (found == false)
         {
@@ -38,7 +65,6 @@ bool has_been_guessed(char letter, char *correct_guesses, char *incorrect_guesse
         }
     }
 
-    // strlen causes memory error
     for (int i = 0; i < strlen(incorrect_guesses); i++)
     {
         if (letter == incorrect_guesses[i])
@@ -49,6 +75,7 @@ bool has_been_guessed(char letter, char *correct_guesses, char *incorrect_guesse
 
     return false;
 }
+
 bool check_and_record_guess(char guess, char *word_to_guess, char *correct_guesses, char *incorrect_guesses)
 {
     for (int i = 0; i < strlen(word_to_guess); i++)
@@ -65,7 +92,7 @@ bool check_and_record_guess(char guess, char *word_to_guess, char *correct_guess
 
 void print_current_state(char *word_to_guess, char *correct_guesses)
 {
-    // loop through word to guess and display __ or guessed letters
+    // loop through word to guess and display __ or correctly guessed letters
     for (int i = 0; i < strlen(word_to_guess); i++)
     {
         // this is stupid
