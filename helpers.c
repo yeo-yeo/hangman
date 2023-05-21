@@ -1,5 +1,6 @@
 #include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
 
 bool checkIfWon(char *wordToGuess, char *alreadyGuessed)
 {
@@ -27,47 +28,50 @@ bool checkIfWon(char *wordToGuess, char *alreadyGuessed)
     return true;
 }
 
-bool haveGuessedLetter(char letter, char *alreadyGuessed)
+bool has_been_guessed(char letter, char *correct_guesses, char *incorrect_guesses)
 {
-    for (int i = 0; alreadyGuessed[i] != '\0'; i++)
+    for (int i = 0; i < strlen(correct_guesses); i++)
     {
-        if (letter == alreadyGuessed[i])
+        if (letter == correct_guesses[i])
         {
             return true;
         }
     }
-    return false;
-}
-void add_guess_to_already_guessed(char guess, char *already_guessed)
-{
-    for (int i = 0; already_guessed[i] != '\0'; i++)
+
+    // strlen causes memory error
+    for (int i = 0; i < strlen(incorrect_guesses); i++)
     {
-        if (already_guessed[i] == '?')
+        if (letter == incorrect_guesses[i])
         {
-            already_guessed[i] = guess;
-            break;
+            return true;
         }
     }
-}
 
-bool check_if_error(char *word_to_guess, char guess)
+    return false;
+}
+bool check_and_record_guess(char guess, char *word_to_guess, char *correct_guesses, char *incorrect_guesses)
 {
-    for (int i = 0; word_to_guess[i] != '\0'; i++)
+    for (int i = 0; i < strlen(word_to_guess); i++)
     {
         if (guess == word_to_guess[i])
         {
+            correct_guesses[strlen(correct_guesses)] = guess;
             return false;
         }
     }
+    incorrect_guesses[strlen(incorrect_guesses)] = guess;
     return true;
 }
 
-void print_current_state(char *word_to_guess, char *already_guessed)
+void print_current_state(char *word_to_guess, char *correct_guesses)
 {
     // loop through word to guess and display __ or guessed letters
-    for (int i = 0; word_to_guess[i] != '\0'; i++)
+    for (int i = 0; i < strlen(word_to_guess); i++)
     {
-        if (haveGuessedLetter(word_to_guess[i], already_guessed))
+        // this is stupid
+        char _placeholder = ' ';
+
+        if (has_been_guessed(word_to_guess[i], correct_guesses, &_placeholder))
         {
             printf("%c ", word_to_guess[i]);
         }
