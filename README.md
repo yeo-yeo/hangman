@@ -22,7 +22,6 @@ I chose to make the classic game [Hangman](https://en.wikipedia.org/wiki/Hangman
 <br><br>
 ### 👩‍💻 Development process:
 Originally I wrote everything in one file, `hangman.c`.  Nearer the end of the project, I refactored the code a bit to move functions besides `main` to `helpers.c`.  I also put the array of strings which contain the hangman ASCII art into the helpers file.  This was to clean up `main` and make it easier to follow its logic at a high level.
-edit: didn't copy this locally. the command to compile is `clang hangman.c helpers.c -o hangman -lcs50` and I think you had to download and install the CS50 library too
 
 I found a list of English words at https://www.curlewcommunications.uk/index.html and downloaded this to `wordlist.txt`.  I did some cleaning up of the list, to remove:
 * words shorter than 3 letters
@@ -33,6 +32,7 @@ I found a list of English words at https://www.curlewcommunications.uk/index.htm
 I largely did this with the `grep` command.
 
 I developed the project on my local machine and used the command `clang hangman.c helpers.c -o hangman -lcs50` to compile the program.  Now that I have uploaded it to the CS50 Codespace I have added a `Makefile` so that it can be compiled by running `make hangman`.
+edit: didn't copy this locally. the command to compile is `clang hangman.c helpers.c -o hangman -lcs50` and I think you had to download and install the CS50 library too
 
 I couldn't figure out how to use `valgrind` on my Mac, but I found it has a similar program `leaks`.  Running `leaks -atExit -- ./hangman` did not reveal any memory leaks.
 
