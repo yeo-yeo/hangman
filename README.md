@@ -3,10 +3,6 @@
 Gillian Yeomans, London, UK
 <br><br>
 
-### 🎥 Video Demo:
-<https://www.youtube.com/watch?v=nNvgrqX1QYA>
-<br><br>
-
 ### 📸 Screenshots:
 Game won
 <br>
